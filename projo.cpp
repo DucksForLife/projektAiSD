@@ -19,23 +19,36 @@ int main() {
     }
   }
   // Generuj plusy
-  for (int i = 0; i < N; ++i) {
-    for (int j = 0; j < M; ++j) {
+  for (int i = 1; i < N + 1; ++i) {
+    for (int j = 1; j < M + 1; ++j) {
+
       if (tab[i][j] == 1) {
-        if (tab[i][j - 2] == 0 && tab[i][j - 1] == 0 &&
-            tab[i - 1][j - 1] == 0 && tab[i + 1][j - 1] == 0 &&
-            tab[i - 1][j] == 0 && tab[i + 1][j] == 0 && tab[i - 2][j] == 0 &&
-            tab[i + 2][j] == 0 && tab[i - 1][j + 1] == 0 &&
-            tab[i + 1][j + 1] == 0 && tab[i][j + 1] == 0 &&
-            tab[i][j + 2] == 0) {
-          if (i - 1 >= 0)
-            tab[i - 1][j] = 1;
-          if (i + 1 < N)
-            tab[i + 1][j] = 1;
-          if (j - 1 >= 0)
-            tab[i][j - 1] = 1;
-          if (j + 1 < M)
-            tab[i][j + 1] = 1;
+        // if (tab[i][j - 2] == 0 && tab[i][j - 1] == 0 &&
+        //     tab[i - 1][j - 1] == 0 && tab[i + 1][j - 1] == 0 &&
+        //     tab[i - 1][j] == 0 && tab[i + 1][j] == 0 && tab[i - 2][j] == 0 &&
+        //     tab[i + 2][j] == 0 && tab[i - 1][j + 1] == 0 &&
+        //     tab[i + 1][j + 1] == 0 && tab[i][j + 1] == 0 &&
+        //     tab[i][j + 2] == 0) {
+        //   if (i - 1 >= 0)
+        //     tab[i - 1][j] = 1;
+        //   if (i + 1 < N)
+        //     tab[i + 1][j] = 1;
+        //   if (j - 1 >= 0)
+        //     tab[i][j - 1] = 1;
+        //   if (j + 1 < M)
+        //     tab[i][j + 1] = 1;
+        //
+        // }
+        if (rand() % 12 > 9) {
+          tab[i - 1][j] = 1;
+          tab[i - 1][j - 1] = 0;
+          tab[i - 1][j + 1] = 0;
+          tab[i][j - 1] = 1;
+          tab[i][j + 1] = 1;
+          tab[i][j] = 1;
+          tab[i + 1][j - 1] = 0;
+          tab[i + 1][j] = 1;
+          tab[i + 1][j + 1] = 0;
         }
       }
     }
