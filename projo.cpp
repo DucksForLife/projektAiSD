@@ -43,23 +43,39 @@ int main() {
 
   int liczbaPlusow = 0;
 
-  for (int i = 1; i < N; ++i) {
-    for (int j = 1; j < M; ++j) {
+  for (int i = 1; i < N - 1; ++i) {
+    for (int j = 1; j < M - 1; ++j) {
       if (tab[i][j] == 1) {
-        if (i + 1 >= M)
-          break;
+        bool isValidPlus = (tab[i - 1][j]) && (tab[i][j]) && (tab[i + 1][j]) &&
+                           (tab[i][j - 1]) && (tab[i][j + 1]);
 
-        if (tab[i + 1][j] == 1) {
-          if (tab[i + 1][j] == 1 && tab[i][j - 2] == 0 && tab[i][j - 1] == 1 &&
-              tab[i - 1][j - 1] == 0 && tab[i + 1][j - 1] == 0 &&
-              tab[i - 1][j] == 1 && tab[i + 1][j] == 1 && tab[i - 2][j] == 0 &&
-              tab[i + 2][j] == 0 && tab[i - 1][j + 1] == 0 &&
-              tab[i + 1][j + 1] == 0 && tab[i][j + 1] == 1 &&
-              tab[i][j + 2] == 0) {
-
+        bool doesNeighboursValid = !(tab[i - 1][j - 1]) &&
+                                   !(tab[i + 1][j + 1]) &&
+                                   !(tab[i - 1][j + 1]) && !(tab[i + 1][j - 1]);
+        if (isValidPlus) {
+          if (i != 1)
+            doesNeighboursValid &= !(tab[i - 2][j]);
+          if (j != 1)
+            doesNeighboursValid &= !(tab[i][j - 2]);
+          if (j != M - 2)
+            doesNeighboursValid &= !(tab[i + 2][j]);
+          if (i != N - 2)
+            doesNeighboursValid &= !(tab[i][j + 2]);
+          if (doesNeighboursValid) {
             liczbaPlusow++;
+            i += 3;
           }
         }
+
+        // if (tab[i + 1][j] == 1 && tab[i][j - 2] == 0 && tab[i][j - 1] == 1 &&
+        //     tab[i - 1][j - 1] == 0 && tab[i + 1][j - 1] == 0 &&
+        //     tab[i - 1][j] == 1 && tab[i + 1][j] == 1 && tab[i - 2][j] == 0 &&
+        //     tab[i + 2][j] == 0 && tab[i - 1][j + 1] == 0 &&
+        //     tab[i + 1][j + 1] == 0 && tab[i][j + 1] == 1 &&
+        //     tab[i][j + 2] == 0) {
+        //
+        //   liczbaPlusow++;
+        // }
       }
     }
   }
